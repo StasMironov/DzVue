@@ -1,16 +1,15 @@
 <script setup>
-import TheProduct from './components/TheProduct.vue'
+    import TheProduct from './components/TheProduct.vue'
+    import fetchProducts from './fetchProducts';
     import { ref, onMounted } from 'vue';
-    const products = ref(null);
 
-    function fetchApi(){
-      fetch('https://testapi.jasonwatmore.com/products')
-        .then(response => response.json())
-        .then(data => products.value = data);
-    }
+    const productsItems = ref(null);
+    const baseURL = 'https://testapi.jasonwatmore.com/products';
 
     onMounted(() => {
-      fetchApi();
+      fetchProducts(baseURL).then(products => {
+        productsItems.value = products;
+      });
     });
 </script>
 
@@ -24,7 +23,7 @@ import TheProduct from './components/TheProduct.vue'
 
       <div class="products">
           <TheProduct 
-            v-for="product in products" :key = "product.id"
+            v-for="product in productsItems" :key = "product.id"
             :item = "product"
             class="products__item"/> 
       </div>
