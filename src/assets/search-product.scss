@@ -1,0 +1,13 @@
+.search-product {
+    display: flex;
+    justify-content: center;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+
+        &:first-child{
+            margin-right: 0.5rem;
+        }
+    }
+}

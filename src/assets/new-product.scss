@@ -1,0 +1,12 @@
+.new-product {
+    margin: 1rem auto;
+    width: 27rem;
+    border: 1px solid;
+    padding: 1rem;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.5rem;
+    }
+}

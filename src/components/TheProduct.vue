@@ -1,30 +1,24 @@
-
 <template>
     <div class="product">
-        <div class="product__id">{{item.id}}</div>
-        <div class="product__name">{{item.name}}</div>
+        <div class="product__wrapper">
+            <div class="product__left">
+                <div class="product__img">
+                    <img :src="item.image" alt="product"/>
+                </div>
+            </div>
+            <div class="product__right">
+                <div class="product__title">{{item.title}}</div>
+                <div class="product__category"><span class="product__label">Category: </span>{{item.category}}</div>
+                <div class="product__description">{{item.description}}</div>
+                <div class="product__rice"><span class="product__label">Price:</span> {{item.price}}</div>
+            </div>
+        </div>
+       
     </div>
 </template>
 
-<style scoped>
-    .product {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        border-bottom: 2px solid;
-    }
-
-    .product__id,  
-    .product__name {
-        font-weight: 700;
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .product__id {
-        margin-right: 5px;
-    }
+<style scoped lang="scss">
+   @import './../assets/product.scss';
 </style>
 
 <script setup>
