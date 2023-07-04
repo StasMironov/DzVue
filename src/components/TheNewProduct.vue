@@ -25,7 +25,7 @@
         </div>
         <div class="new-product__field">
             <span class="new-product__label">Цена:</span>
-            <Field name="price" :rules="validateField" v-model="good.price" type="number" />
+            <Field name="price" :rules="validatePrice" v-model="good.price" type="number" />
             <ErrorMessage name="price" />
         </div>
         <button>Добавить</button>
@@ -37,15 +37,15 @@
 </style>
 
 <script setup>
+    import { Form, Field, ErrorMessage } from 'vee-validate';
+    import { reactive} from 'vue';
+
     const props = defineProps({
         category: Array,
         required: true
     })
 
     const emit = defineEmits(['addProduct']);
-
-    import { Form, Field, ErrorMessage } from 'vee-validate';
-    import { reactive} from 'vue';
 
     let good = reactive({
         title: null,
@@ -74,6 +74,18 @@
         }
         if (value.length < 10) {
             return 'Кол-во символов должно быть больше 10';
+        }
+        return true;
+    }
+
+    function validatePrice(value) {
+        console.log(value);
+
+        if (!value) {
+            return 'Обязательное поле';
+        }
+        if (value <= 0) {
+            return 'Значение должно быть больше 0!';
         }
         return true;
     }

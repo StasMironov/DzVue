@@ -3,6 +3,7 @@
     import TheHeader from './components/TheHeader.vue';
     import TheSearchProduct from './components/TheSearchProduct.vue';
     import TheNewProduct from './components/TheNewProduct.vue';
+    import TheOrderForm from './components/TheOrderForm.vue';
     import fetchProducts from './fetchProducts';
     import { ref, onMounted, watch } from 'vue';
 
@@ -18,10 +19,6 @@
       })
     });
 
-    watch(getProducts, ()=>{
-     // console.log(getProducts);
-    });
-    
     function updateList(item){
       item.id = getProducts.value.length + 1;
       getProducts.value.push(item);
@@ -45,6 +42,7 @@
               Такого товара нет!
             </div>
       </div>
+      <TheOrderForm />
     </div>
   </main>
 </template>
