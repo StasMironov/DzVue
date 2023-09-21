@@ -6,13 +6,13 @@
             <Field name="title" :rules="validTitle" v-model="good.title" type="text"/>
             <ErrorMessage name="title" />
         </div>
-         <div class="new-product__field">
+         <!-- <div class="new-product__field">
             <span class="new-product__label">Категория:</span>
             <Field name="category" :rules="validateField" v-model="good.category" as="select">
                 <option v-for="(item, key) in category" :value="item">{{item}}</option>
             </Field>
             <ErrorMessage name="category" />
-        </div>
+        </div> -->
         <div class="new-product__field">
             <span class="new-product__label">Изображение:</span>
             <Field name="image" :rules="validateField" @change="changeFile" type="file" accept="image/*" />
@@ -22,6 +22,11 @@
             <span class="new-product__label">Описание:</span>
             <Field name="desc" :rules="validTitle" v-model="good.description" />
             <ErrorMessage name="desc" />
+        </div>
+        <div class="new-product__field">
+            <span class="new-product__label">Кол-во:</span>
+            <Field name="qty" :rules="validatePrice" v-model="good.qty" type="number" />
+            <ErrorMessage name="qty" />
         </div>
         <div class="new-product__field">
             <span class="new-product__label">Цена:</span>
@@ -38,27 +43,43 @@
 
 <script setup>
     import { Form, Field, ErrorMessage } from 'vee-validate';
+    import { useRouter } from 'vue-router';
     import { reactive} from 'vue';
 
     const props = defineProps({
         category: Array,
         required: true
-    })
+    });
+
+    const router = useRouter();
 
     const emit = defineEmits(['addProduct']);
 
     let good = reactive({
+        id: null,
         title: null,
         category: null,
         image: null,
         description: null,
-        price: null
+        price: null,
+        qty: null
     });
 
     function addProduct(value){
-        emit('addProduct', good);
-        good = {};
-        event.target.reset();
+        // // emit('addProduct', good);
+        // // good = {};
+        // // console.log(window.data.value.length);
+        // good.id = window.data.value.length++;
+        // window.data.value.push(good);
+        // good = {};
+        // event.target.reset();
+
+        let arrProducts = JSON.parse(localStorage.getItem('goods'));
+        good.id = arrProducts.length + 1; 
+        arrProducts.push(good);
+        localStorage.setItem('goods', JSON.stringify(arrProducts));
+        router.push({path: '/home'});  
+        
     }
 
     function validateField(value) {
@@ -79,8 +100,6 @@
     }
 
     function validatePrice(value) {
-        console.log(value);
-
         if (!value) {
             return 'Обязательное поле';
         }

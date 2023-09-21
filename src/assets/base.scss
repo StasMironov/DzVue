@@ -1,3 +1,5 @@
+@import '@/assets/button.scss';
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
@@ -70,4 +72,14 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.p-t {
+  padding-top: 200px;
 }

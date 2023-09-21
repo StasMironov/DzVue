@@ -1,0 +1,27 @@
+.auth {
+    width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        width: 16em;
+        max-width: 16em;
+
+        &:not(:last-child){
+            margin-bottom: 1em;
+        }
+    }
+
+    &__error {
+        font-size: 12px;
+        color: red;
+    }
+}

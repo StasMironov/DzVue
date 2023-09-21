@@ -1,0 +1,19 @@
+.navigation {
+    margin-left: auto;
+
+    &__list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    &__link {
+        &:not(:last-child){
+            margin-right: 8px;
+        }
+
+        &--none {
+            display: none;
+        }
+    }
+}

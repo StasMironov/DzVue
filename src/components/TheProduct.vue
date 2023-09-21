@@ -7,22 +7,21 @@
                 </div>
             </div>
             <div class="product__right">
-                <div class="product__title">{{item.title}}</div>
+                <router-link class="product__title" :to="{name: 'theproductdetail', params: {productId: item.id}}">{{item.title}}</router-link>
                 <div class="product__category"><span class="product__label">Category: </span>{{item.category}}</div>
                 <div class="product__description">{{item.description}}</div>
                 <div class="product__rice"><span class="product__label">Price:</span> {{item.price}}</div>
             </div>
         </div>
-       
     </div>
 </template>
 
 <style scoped lang="scss">
-   @import './../assets/product.scss';
+   @import '../assets/product.scss';
 </style>
 
 <script setup>
     defineProps({
         item: Object
-    })
+    });
 </script>
